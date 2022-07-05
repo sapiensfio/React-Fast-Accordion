@@ -3,7 +3,7 @@
   "description": "High performance 0 dependencies accordion for React",
   "author": "Shivam <hi@creativeshi.com>",
   "private": false,
-  "repository": "github:ShivamJoker/React-fast-accordion",
+  "repository": "github:sapiensfio/React-fast-accordion",
   "version": "2.0.9",
   "keywords": [
     "react ",
