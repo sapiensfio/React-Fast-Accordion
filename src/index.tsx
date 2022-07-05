@@ -20,6 +20,16 @@ interface AccorionProps {
   [rest: string | number | symbol]: unknown;
 }
 
+const getMutationObserver = (mutationCb: MutationCallback) => {
+  if (typeof window === 'undefined') {
+    return {
+      observe: () => {},
+      disconect: () => {}
+    }
+  }
+  return new MutationObserver(mutationCb);
+}
+
 const Accordion = ({ items, multiExpand = true, ...rest }: AccorionProps) => {
   const [opened, setOpened] = useState<Record<string, boolean>>({});
   const listContainerRef = useRef<HTMLUListElement>(null);
@@ -40,7 +50,7 @@ const Accordion = ({ items, multiExpand = true, ...rest }: AccorionProps) => {
     );
   };
 
-  const observer = new MutationObserver(mutationCb);
+  let observer = getMutationObserver(mutationCb);
 
   useEffect(() => {
     if (!listContainerRef.current) return;
